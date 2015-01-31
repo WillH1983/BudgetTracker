@@ -12,6 +12,7 @@ import UIKit
 
 class PurchasesTableViewController: UITableViewController {
     var dataSourceArray = [Purchase]()
+    var alertController = UIAlertController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +24,42 @@ class PurchasesTableViewController: UITableViewController {
         let purchase2 = Purchase()
         purchase2.purchaseAmount = 69
         purchase2.purchasePlace = "Test Place 2";
-        dataSourceArray = [purchase1, purchase2];
+        self.dataSourceArray = [purchase1, purchase2];
+        let barButtonItem = UIBarButtonItem(title: "Add Purchase", style:UIBarButtonItemStyle.Plain, target:self, action:"addNewPurchase")
+        self.navigationItem.leftBarButtonItem = barButtonItem
 
+    }
+    
+    func addNewPurchase() {
+        
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.Destructive) { (action) -> Void in
+            NSLog(action.debugDescription);
+            let textFieldArray = self.alertController.textFields
+            
+            if let purchasePlaceTextField = textFieldArray?.first as? UITextField {
+                NSLog(purchasePlaceTextField.text)
+            }
+            
+            if let purchaseAmountTextField = textFieldArray?.last as? UITextField {
+                NSLog(purchaseAmountTextField.text)
+            }
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        
+        alertController = UIAlertController(title: "Add New Purchase", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            textField.placeholder = "Purchase Place"
+        }
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            textField.placeholder = "Purchase Amount"
+        }
+        
+        presentViewController(alertController, animated: true, completion: nil);
     }
 
     // MARK: - Table view data source
@@ -38,14 +73,14 @@ class PurchasesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return dataSourceArray.count
+        return self.dataSourceArray.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseCell", forIndexPath: indexPath) as UITableViewCell
         
-        var purchase = dataSourceArray[indexPath.row]
+        var purchase = self.dataSourceArray[indexPath.row]
         
         cell.textLabel?.text = purchase.purchasePlace
         cell.detailTextLabel?.text = String(purchase.purchaseAmount)
