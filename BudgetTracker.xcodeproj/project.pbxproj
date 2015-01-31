@@ -14,6 +14,7 @@
 		BEB386721A7C72C9002A3ACA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEB386711A7C72C9002A3ACA /* Images.xcassets */; };
 		BEB386751A7C72C9002A3ACA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEB386731A7C72C9002A3ACA /* LaunchScreen.xib */; };
 		BEB386811A7C72C9002A3ACA /* BudgetTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB386801A7C72C9002A3ACA /* BudgetTrackerTests.swift */; };
+		BEB3868C1A7C786F002A3ACA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB3868B1A7C786F002A3ACA /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,8 @@
 		BEB3867A1A7C72C9002A3ACA /* BudgetTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB3867F1A7C72C9002A3ACA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEB386801A7C72C9002A3ACA /* BudgetTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTrackerTests.swift; sourceTree = "<group>"; };
+		BEB3868A1A7C7860002A3ACA /* BudgetTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BudgetTracker.entitlements; sourceTree = "<group>"; };
+		BEB3868B1A7C786F002A3ACA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEB3868C1A7C786F002A3ACA /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +65,7 @@
 		BEB3865A1A7C72C9002A3ACA = {
 			isa = PBXGroup;
 			children = (
+				BEB3868B1A7C786F002A3ACA /* CloudKit.framework */,
 				BEB386651A7C72C9002A3ACA /* BudgetTracker */,
 				BEB3867D1A7C72C9002A3ACA /* BudgetTrackerTests */,
 				BEB386641A7C72C9002A3ACA /* Products */,
@@ -79,6 +84,7 @@
 		BEB386651A7C72C9002A3ACA /* BudgetTracker */ = {
 			isa = PBXGroup;
 			children = (
+				BEB3868A1A7C7860002A3ACA /* BudgetTracker.entitlements */,
 				BEB386681A7C72C9002A3ACA /* AppDelegate.swift */,
 				BEB3866A1A7C72C9002A3ACA /* FirstViewController.swift */,
 				BEB3866C1A7C72C9002A3ACA /* SecondViewController.swift */,
@@ -165,6 +171,11 @@
 					BEB386621A7C72C9002A3ACA = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 5EW7K5N9Y3;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					BEB386791A7C72C9002A3ACA = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -343,11 +354,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BudgetTracker/BudgetTracker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: William Hindenburg (5EW7K5N9Y3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: William Hindenburg (5EW7K5N9Y3)";
 				INFOPLIST_FILE = BudgetTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a2621c6b-d05a-4fdc-bc0a-10e5b3ebedac";
+				PROVISIONING_PROFILE = "613f1d40-2114-4d35-b3e9-b1f01ca0bbce";
 			};
 			name = Debug;
 		};
@@ -355,11 +368,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BudgetTracker/BudgetTracker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: William Hindenburg (5EW7K5N9Y3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: William Hindenburg (5EW7K5N9Y3)";
 				INFOPLIST_FILE = BudgetTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a2621c6b-d05a-4fdc-bc0a-10e5b3ebedac";
+				PROVISIONING_PROFILE = "613f1d40-2114-4d35-b3e9-b1f01ca0bbce";
 			};
 			name = Release;
 		};
@@ -416,6 +431,7 @@
 				BEB386861A7C72C9002A3ACA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BEB386871A7C72C9002A3ACA /* Build configuration list for PBXNativeTarget "BudgetTrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +440,7 @@
 				BEB386891A7C72C9002A3ACA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
