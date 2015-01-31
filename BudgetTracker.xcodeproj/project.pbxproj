@@ -15,6 +15,8 @@
 		BEE8E0CF1A7C7D0B00E31C01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE8E0CC1A7C7D0B00E31C01 /* AppDelegate.swift */; };
 		BEE8E0D01A7C7D0B00E31C01 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE8E0CD1A7C7D0B00E31C01 /* FirstViewController.swift */; };
 		BEE8E0D11A7C7D0B00E31C01 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE8E0CE1A7C7D0B00E31C01 /* SecondViewController.swift */; };
+		BEE8E0D51A7C7DE100E31C01 /* PurchasesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE8E0D41A7C7DE100E31C01 /* PurchasesTableViewController.swift */; };
+		BEE8E0DA1A7C8D9B00E31C01 /* Purchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE8E0D91A7C8D9B00E31C01 /* Purchase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,8 @@
 		BEE8E0CC1A7C7D0B00E31C01 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEE8E0CD1A7C7D0B00E31C01 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		BEE8E0CE1A7C7D0B00E31C01 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		BEE8E0D41A7C7DE100E31C01 /* PurchasesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchasesTableViewController.swift; sourceTree = "<group>"; };
+		BEE8E0D91A7C8D9B00E31C01 /* Purchase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Purchase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,9 +90,10 @@
 			children = (
 				BEE8E0CB1A7C7D0B00E31C01 /* Application */,
 				BEB3868A1A7C7860002A3ACA /* BudgetTracker.entitlements */,
-				BEB3866E1A7C72C9002A3ACA /* Main.storyboard */,
 				BEB386711A7C72C9002A3ACA /* Images.xcassets */,
 				BEB386731A7C72C9002A3ACA /* LaunchScreen.xib */,
+				BEB3866E1A7C72C9002A3ACA /* Main.storyboard */,
+				BEE8E0D61A7C83D700E31C01 /* Models */,
 				BEB386661A7C72C9002A3ACA /* Supporting Files */,
 			);
 			path = BudgetTracker;
@@ -124,9 +129,18 @@
 			children = (
 				BEE8E0CC1A7C7D0B00E31C01 /* AppDelegate.swift */,
 				BEE8E0CD1A7C7D0B00E31C01 /* FirstViewController.swift */,
+				BEE8E0D41A7C7DE100E31C01 /* PurchasesTableViewController.swift */,
 				BEE8E0CE1A7C7D0B00E31C01 /* SecondViewController.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		BEE8E0D61A7C83D700E31C01 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BEE8E0D91A7C8D9B00E31C01 /* Purchase.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +250,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE8E0D11A7C7D0B00E31C01 /* SecondViewController.swift in Sources */,
+				BEE8E0DA1A7C8D9B00E31C01 /* Purchase.swift in Sources */,
 				BEE8E0D01A7C7D0B00E31C01 /* FirstViewController.swift in Sources */,
+				BEE8E0D51A7C7DE100E31C01 /* PurchasesTableViewController.swift in Sources */,
 				BEE8E0CF1A7C7D0B00E31C01 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
