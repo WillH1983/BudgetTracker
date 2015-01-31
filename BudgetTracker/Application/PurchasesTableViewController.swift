@@ -17,14 +17,6 @@ class PurchasesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let purchase1 = Purchase()
-        purchase1.purchaseAmount = 24
-        purchase1.purchasePlace = "Test Place"
-        
-        let purchase2 = Purchase()
-        purchase2.purchaseAmount = 69
-        purchase2.purchasePlace = "Test Place 2";
-        self.dataSourceArray = [purchase1, purchase2];
         let barButtonItem = UIBarButtonItem(title: "Add Purchase", style:UIBarButtonItemStyle.Plain, target:self, action:"addNewPurchase")
         self.navigationItem.leftBarButtonItem = barButtonItem
 
@@ -33,33 +25,38 @@ class PurchasesTableViewController: UITableViewController {
     func addNewPurchase() {
         
         let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.Destructive) { (action) -> Void in
-            NSLog(action.debugDescription);
             let textFieldArray = self.alertController.textFields
+            let purchase = Purchase()
             
             if let purchasePlaceTextField = textFieldArray?.first as? UITextField {
-                NSLog(purchasePlaceTextField.text)
+                purchase.purchasePlace = purchasePlaceTextField.text;
             }
             
             if let purchaseAmountTextField = textFieldArray?.last as? UITextField {
-                NSLog(purchaseAmountTextField.text)
+                purchase.purchaseAmount = (purchaseAmountTextField.text.toInt() ?? 0)
+            }
+            
+            if purchase.purchasePlace.isEmpty == false && purchase.purchaseAmount > 0 {
+                self.dataSourceArray.append(purchase)
+                self.tableView.reloadData()
             }
             
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         
-        alertController = UIAlertController(title: "Add New Purchase", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(saveAction)
-        alertController.addAction(cancelAction)
+        self.alertController = UIAlertController(title: "Add New Purchase", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        self.alertController.addAction(saveAction)
+        self.alertController.addAction(cancelAction)
         
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
+        self.alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
             textField.placeholder = "Purchase Place"
         }
         
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
+        self.alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
             textField.placeholder = "Purchase Amount"
         }
         
-        presentViewController(alertController, animated: true, completion: nil);
+        presentViewController(self.alertController, animated: true, completion: nil);
     }
 
     // MARK: - Table view data source
