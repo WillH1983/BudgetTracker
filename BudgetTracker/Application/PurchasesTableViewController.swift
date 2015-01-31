@@ -51,6 +51,13 @@ class PurchasesTableViewController: UITableViewController {
                 NSLog("Test")
             })
             
+            let savePurchaseSerice = SavePurchaseService()
+            savePurchaseSerice.savePurchase(purchase, completionHandler: { () -> Void in
+                
+            }, errorHandler: { (error) -> Void in
+                
+            })
+            
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         
