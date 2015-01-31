@@ -164,6 +164,7 @@
 				TargetAttributes = {
 					BEB386621A7C72C9002A3ACA = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 5EW7K5N9Y3;
 					};
 					BEB386791A7C72C9002A3ACA = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -342,9 +343,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: William Hindenburg (5EW7K5N9Y3)";
 				INFOPLIST_FILE = BudgetTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a2621c6b-d05a-4fdc-bc0a-10e5b3ebedac";
 			};
 			name = Debug;
 		};
@@ -352,9 +355,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: William Hindenburg (5EW7K5N9Y3)";
 				INFOPLIST_FILE = BudgetTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a2621c6b-d05a-4fdc-bc0a-10e5b3ebedac";
 			};
 			name = Release;
 		};
