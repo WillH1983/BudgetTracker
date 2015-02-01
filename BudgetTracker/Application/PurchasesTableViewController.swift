@@ -17,7 +17,11 @@ class PurchasesTableViewController: UITableViewController {
         
         let barButtonItem = UIBarButtonItem(title: "Add Purchase", style:UIBarButtonItemStyle.Plain, target:self, action:"addNewPurchase")
         self.navigationItem.leftBarButtonItem = barButtonItem
-
+        RetrievePurchasesService().retrievePurchases({ (array) -> Void in
+            NSLog ("%@", array)
+        }, errorHandler: { (error) -> Void in
+            
+        })
     }
     
     func addNewPurchase() {
