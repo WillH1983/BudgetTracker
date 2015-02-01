@@ -17,8 +17,9 @@ class PurchasesTableViewController: UITableViewController {
         
         let barButtonItem = UIBarButtonItem(title: "Add Purchase", style:UIBarButtonItemStyle.Plain, target:self, action:"addNewPurchase")
         self.navigationItem.leftBarButtonItem = barButtonItem
-        RetrievePurchasesService().retrievePurchases({ (array) -> Void in
-            NSLog ("%@", array)
+        RetrievePurchasesService().retrievePurchases({ (arrayOfPurchases) -> Void in
+            self.dataSourceArray = arrayOfPurchases;
+            self.tableView.reloadData()
         }, errorHandler: { (error) -> Void in
             
         })
