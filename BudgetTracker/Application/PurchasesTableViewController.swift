@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import CloudKit
-
-
 
 class PurchasesTableViewController: UITableViewController {
     var dataSourceArray = [Purchase]()
@@ -38,25 +35,13 @@ class PurchasesTableViewController: UITableViewController {
             }
             
             if purchase.purchasePlace.isEmpty == false && purchase.purchaseAmount > 0 {
-                self.dataSourceArray.append(purchase)
-                self.tableView.reloadData()
+                SavePurchaseService().savePurchase(purchase, completionHandler: { () -> Void in
+                    self.dataSourceArray.append(purchase)
+                    self.tableView.reloadData()
+                    }, errorHandler: { (error) -> Void in
+                        
+                })
             }
-            
-            let record = CKRecord(recordType: "Purchase")
-            record.setValue(purchase.purchasePlace, forKey: "PurchasePlace")
-            record.setValue(purchase.purchaseAmount, forKey: "PurchaseAmount")
-            
-            let cloudDatabase = CKContainer.defaultContainer().publicCloudDatabase
-            cloudDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
-                NSLog("Test")
-            })
-            
-            let savePurchaseSerice = SavePurchaseService()
-            savePurchaseSerice.savePurchase(purchase, completionHandler: { () -> Void in
-                
-            }, errorHandler: { (error) -> Void in
-                
-            })
             
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
