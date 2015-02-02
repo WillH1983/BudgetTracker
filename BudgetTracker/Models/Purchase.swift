@@ -11,4 +11,5 @@ import UIKit
 class Purchase: NSObject {
     var purchasePlace = ""
     var purchaseAmount = 0
+    var purchaseDate = NSDate()
 }

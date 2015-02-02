@@ -40,8 +40,8 @@ class PurchasesTableViewController: UITableViewController {
             }
             
             if purchase.purchasePlace.isEmpty == false && purchase.purchaseAmount > 0 {
-                SavePurchaseService().savePurchase(purchase, completionHandler: { () -> Void in
-                    self.dataSourceArray.append(purchase)
+                SavePurchaseService().savePurchase(purchase, completionHandler: { (purchaseWithDate) -> Void in
+                    self.dataSourceArray.append(purchaseWithDate)
                     self.tableView.reloadData()
                     }, errorHandler: { (error) -> Void in
                         

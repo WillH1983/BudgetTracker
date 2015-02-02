@@ -26,6 +26,7 @@ class RetrievePurchasesService: NSObject {
                             var purchase = Purchase()
                             purchase.purchaseAmount = actualRecord.objectForKey("PurchaseAmount") as Int
                             purchase.purchasePlace = actualRecord.objectForKey("PurchasePlace") as String
+                            purchase.purchaseDate = actualRecord.creationDate
                             purchaseArray.append(purchase)
                         }
                     }
