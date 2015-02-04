@@ -14,6 +14,7 @@ class SavePurchaseService: NSObject {
         let record = CKRecord(recordType: "Purchase")
         record.setValue(purchase.purchasePlace, forKey: "PurchasePlace")
         record.setValue(purchase.purchaseAmount, forKey: "PurchaseAmount")
+        record.setValue(NSDate(), forKey: "PurchaseDate")
         
         let cloudDatabase = CKContainer.defaultContainer().publicCloudDatabase
         cloudDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in

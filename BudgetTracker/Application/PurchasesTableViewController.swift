@@ -9,7 +9,7 @@
 import UIKit
 
 class PurchasesTableViewController: UITableViewController {
-    var dataSourceArray = [Purchase]()
+    var dataSourceArray = [AnyObject]()
     var alertController = UIAlertController()
     
     override func viewDidLoad() {
@@ -71,24 +71,36 @@ class PurchasesTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 1
+        return self.dataSourceArray.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return self.dataSourceArray.count
+        var dictionaryWithPurchases = self.dataSourceArray[section] as NSDictionary
+        var arrayOfPurchases = dictionaryWithPurchases.valueForKey("purchases") as NSArray
+        return arrayOfPurchases.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseCell", forIndexPath: indexPath) as UITableViewCell
         
-        var purchase = self.dataSourceArray[indexPath.row]
+        var dictionaryWithPurchases = self.dataSourceArray[indexPath.section] as NSDictionary
+        var arrayOfPurchases = dictionaryWithPurchases.valueForKey("purchases") as NSArray
+        var purchase = arrayOfPurchases[indexPath.row] as Purchase
         
         cell.textLabel?.text = purchase.purchasePlace
         cell.detailTextLabel?.text = String(purchase.purchaseAmount)
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var dictionaryWithPurchases = self.dataSourceArray[section] as NSDictionary
+        var monthDate = dictionaryWithPurchases.valueForKey("month") as NSDate
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        return dateFormatter.stringFromDate(monthDate);
     }
 
 
