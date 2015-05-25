@@ -23,9 +23,9 @@ class RetrievePurchasesService: NSObject {
                     for record in arrayOfPurchases {
                         if let actualRecord = record as? CKRecord {
                             var purchase = Purchase()
-                            purchase.purchaseAmount = actualRecord.objectForKey("PurchaseAmount") as Int
-                            purchase.purchasePlace = actualRecord.objectForKey("PurchasePlace") as String
-                            purchase.purchaseDate = (actualRecord.objectForKey("PurchaseDate") as NSDate) ?? NSDate()
+                            purchase.purchaseAmount = actualRecord.objectForKey("PurchaseAmount") as! Int
+                            purchase.purchasePlace = actualRecord.objectForKey("PurchasePlace") as! String
+                            purchase.purchaseDate = (actualRecord.objectForKey("PurchaseDate") as! NSDate) ?? NSDate()
                             
                             var beginningOfTheMonthDate = self.dateAtTheBeginningOfTheMonth(purchase.purchaseDate)
                             
@@ -33,7 +33,7 @@ class RetrievePurchasesService: NSObject {
                             var foundMatch = false
                             if mutableArrayOfPurchaseMonths.count > 0 {
                                 for object in mutableArrayOfPurchaseMonths {
-                                    monthDictionary = object as NSDictionary
+                                    monthDictionary = object as! NSDictionary
                                     if let monthDate = monthDictionary.valueForKey("month") as? NSDate {
                                         if (monthDate.isEqualToDate(beginningOfTheMonthDate)) {
                                             if let arrayOfPurchases2 = monthDictionary.valueForKey("purchases") as? NSMutableArray {
@@ -79,7 +79,7 @@ class RetrievePurchasesService: NSObject {
         var timeZone = NSTimeZone.systemTimeZone()
         calendar.timeZone = timeZone
         
-        var dateComps = calendar.components(NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit, fromDate: date)
+        var dateComps = calendar.components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay, fromDate: date)
         dateComps.hour = 0
         dateComps.minute = 0
         dateComps.second = 0
