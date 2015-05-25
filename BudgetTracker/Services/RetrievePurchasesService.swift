@@ -25,7 +25,9 @@ class RetrievePurchasesService: NSObject {
                             var purchase = Purchase()
                             purchase.purchaseAmount = actualRecord.objectForKey("PurchaseAmount") as! Int
                             purchase.purchasePlace = actualRecord.objectForKey("PurchasePlace") as! String
-                            purchase.purchaseDate = (actualRecord.objectForKey("PurchaseDate") as! NSDate) ?? NSDate()
+                            if let var variablePurchaseDate: NSDate = actualRecord.objectForKey("PurchaseDate") as? NSDate {
+                                purchase.purchaseDate = variablePurchaseDate
+                            }
                             
                             var beginningOfTheMonthDate = self.dateAtTheBeginningOfTheMonth(purchase.purchaseDate)
                             
