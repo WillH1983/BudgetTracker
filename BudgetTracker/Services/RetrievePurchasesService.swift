@@ -18,18 +18,22 @@ class RetrievePurchasesService: NSObject {
         cloudDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (arrayOfPurchases, error) -> Void in
             dispatch_async(dispatch_get_main_queue(),{
                 if error == nil {
-                    var mutableArrayOfPurchaseMonths = NSMutableArray()
+                    let mutableArrayOfPurchaseMonths = NSMutableArray()
                     var purchaseArray = [Purchase]()
-                    for record in arrayOfPurchases {
+                    var arrayOfPurchases2 = []
+                    if (arrayOfPurchases != nil) {
+                        arrayOfPurchases2 = arrayOfPurchases!
+                    }
+                    for record in arrayOfPurchases2 {
                         if let actualRecord = record as? CKRecord {
-                            var purchase = Purchase()
+                            let purchase = Purchase()
                             purchase.purchaseAmount = actualRecord.objectForKey("PurchaseAmount") as! Int
                             purchase.purchasePlace = actualRecord.objectForKey("PurchasePlace") as! String
-                            if let var variablePurchaseDate: NSDate = actualRecord.objectForKey("PurchaseDate") as? NSDate {
+                            if let variablePurchaseDate: NSDate = actualRecord.objectForKey("PurchaseDate") as? NSDate {
                                 purchase.purchaseDate = variablePurchaseDate
                             }
                             
-                            var beginningOfTheMonthDate = self.dateAtTheBeginningOfTheMonth(purchase.purchaseDate)
+                            let beginningOfTheMonthDate = self.dateAtTheBeginningOfTheMonth(purchase.purchaseDate)
                             
                             var monthDictionary = NSDictionary()
                             var foundMatch = false
@@ -68,7 +72,7 @@ class RetrievePurchasesService: NSObject {
                     let arrayOfDictionaries = mutableArrayOfPurchaseMonths.sortedArrayUsingDescriptors([dateSortDescriptiors])
                     completionHandler(Array: arrayOfDictionaries);
                 } else {
-                    errorHandler(error)
+                    errorHandler(error!)
                 }
             })
             
@@ -77,17 +81,17 @@ class RetrievePurchasesService: NSObject {
     }
     
     private func dateAtTheBeginningOfTheMonth (date: NSDate) -> NSDate {
-        var calendar = NSCalendar.currentCalendar()
-        var timeZone = NSTimeZone.systemTimeZone()
+        let calendar = NSCalendar.currentCalendar()
+        let timeZone = NSTimeZone.systemTimeZone()
         calendar.timeZone = timeZone
         
-        var dateComps = calendar.components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay, fromDate: date)
+        let dateComps = calendar.components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day], fromDate: date)
         dateComps.hour = 0
         dateComps.minute = 0
         dateComps.second = 0
         dateComps.day = 1
         
-        var beginningOfMonth = calendar.dateFromComponents(dateComps)
+        let beginningOfMonth = calendar.dateFromComponents(dateComps)
         return beginningOfMonth ?? NSDate()
     }
 }

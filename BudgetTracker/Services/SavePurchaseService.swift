@@ -20,10 +20,10 @@ class SavePurchaseService: NSObject {
         cloudDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
             dispatch_async(dispatch_get_main_queue(),{
                 if error == nil {
-                    purchase.purchaseDate = record.creationDate
+                    purchase.purchaseDate = record!.creationDate!
                     completionHandler(purchase)
                 } else {
-                    errorHandler(error)
+                    errorHandler(error!)
                 }
             });
             

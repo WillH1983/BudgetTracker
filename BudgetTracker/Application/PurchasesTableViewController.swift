@@ -31,12 +31,12 @@ class PurchasesTableViewController: UITableViewController {
             let textFieldArray = self.alertController.textFields
             let purchase = Purchase()
             
-            if let purchasePlaceTextField = textFieldArray?.first as? UITextField {
-                purchase.purchasePlace = purchasePlaceTextField.text;
+            if let purchasePlaceTextField = textFieldArray?.first {
+                purchase.purchasePlace = purchasePlaceTextField.text!;
             }
             
-            if let purchaseAmountTextField = textFieldArray?.last as? UITextField {
-                purchase.purchaseAmount = (purchaseAmountTextField.text.toInt() ?? 0)
+            if let purchaseAmountTextField = textFieldArray?.last {
+                purchase.purchaseAmount = (Int(purchaseAmountTextField.text!) ?? 0)
             }
             
             if purchase.purchasePlace.isEmpty == false && purchase.purchaseAmount > 0 {
@@ -77,18 +77,18 @@ class PurchasesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        var dictionaryWithPurchases = self.dataSourceArray[section] as! NSDictionary
-        var arrayOfPurchases = dictionaryWithPurchases.valueForKey("purchases") as! NSArray
+        let dictionaryWithPurchases = self.dataSourceArray[section] as! NSDictionary
+        let arrayOfPurchases = dictionaryWithPurchases.valueForKey("purchases") as! NSArray
         return arrayOfPurchases.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseCell", forIndexPath: indexPath) as UITableViewCell
         
-        var dictionaryWithPurchases = self.dataSourceArray[indexPath.section] as! NSDictionary
-        var arrayOfPurchases = dictionaryWithPurchases.valueForKey("purchases") as! NSArray
-        var purchase = arrayOfPurchases[indexPath.row] as! Purchase
+        let dictionaryWithPurchases = self.dataSourceArray[indexPath.section] as! NSDictionary
+        let arrayOfPurchases = dictionaryWithPurchases.valueForKey("purchases") as! NSArray
+        let purchase = arrayOfPurchases[indexPath.row] as! Purchase
         
         cell.textLabel?.text = purchase.purchasePlace
         cell.detailTextLabel?.text = String(purchase.purchaseAmount)
@@ -96,9 +96,9 @@ class PurchasesTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var dictionaryWithPurchases = self.dataSourceArray[section] as! NSDictionary
-        var monthDate = dictionaryWithPurchases.valueForKey("month") as! NSDate
-        var dateFormatter = NSDateFormatter()
+        let dictionaryWithPurchases = self.dataSourceArray[section] as! NSDictionary
+        let monthDate = dictionaryWithPurchases.valueForKey("month") as! NSDate
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         return dateFormatter.stringFromDate(monthDate);
     }
