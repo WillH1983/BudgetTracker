@@ -41,7 +41,11 @@ class PurchasesTableViewController: UITableViewController {
             
             if purchase.purchasePlace.isEmpty == false && purchase.purchaseAmount > 0 {
                 SavePurchaseService().savePurchase(purchase, completionHandler: { (purchaseWithDate) -> Void in
-                    self.dataSourceArray.append(purchaseWithDate)
+                    var purchaseDictionary = self.dataSourceArray[0] as! Dictionary <String, AnyObject>
+                    var purchaseArrayForCurrentMonth = purchaseDictionary["purchases"] as! Array<Purchase>
+                    purchaseArrayForCurrentMonth.append(purchaseWithDate)
+                    purchaseDictionary["purchases"] = purchaseArrayForCurrentMonth
+                    self.dataSourceArray[0] = purchaseDictionary
                     self.tableView.reloadData()
                     }, errorHandler: { (error) -> Void in
                         
